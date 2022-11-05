@@ -55,7 +55,7 @@ public class LotrClient : ILotrClient, IDisposable
 
         var paginatedBooks = response.Data;
 
-        return paginatedBooks.Docs is not null ? paginatedBooks.Docs[0] : null;
+        return paginatedBooks.Docs is not null && paginatedBooks.Docs.Length > 0 ? paginatedBooks.Docs[0] : null;
     }
 
     public async Task<Chapter[]> GetChapters(LotrRequestOptions? options = null)
@@ -90,7 +90,7 @@ public class LotrClient : ILotrClient, IDisposable
 
         var paginatedChapters = response.Data;
 
-        return paginatedChapters.Docs is not null ? paginatedChapters.Docs[0] : null;
+        return paginatedChapters.Docs is not null && paginatedChapters.Docs.Length > 0 ? paginatedChapters.Docs[0] : null;
     }
 
     public async Task<Chapter[]> GetChaptersFromBook(string bookId, LotrRequestOptions? options = null)
@@ -144,7 +144,7 @@ public class LotrClient : ILotrClient, IDisposable
 
         var paginatedCharacters = response.Data;
 
-        return paginatedCharacters.Docs is not null ? paginatedCharacters.Docs[0] : null;
+        return paginatedCharacters.Docs is not null && paginatedCharacters.Docs.Length > 0 ? paginatedCharacters.Docs[0] : null;
     }
 
     public async Task<Movie[]> GetMovies(LotrRequestOptions? options = null)
@@ -179,7 +179,7 @@ public class LotrClient : ILotrClient, IDisposable
 
         var paginatedMovies = response.Data;
 
-        return paginatedMovies.Docs is not null ? paginatedMovies.Docs[0] : null;
+        return paginatedMovies.Docs is not null && paginatedMovies.Docs.Length > 0 ? paginatedMovies.Docs[0] : null;
     }
 
     public async Task<Quote[]> GetQuotes(LotrRequestOptions? options = null)
@@ -214,7 +214,7 @@ public class LotrClient : ILotrClient, IDisposable
 
         var paginatedQuotes = response.Data;
 
-        return paginatedQuotes.Docs is not null ? paginatedQuotes.Docs[0] : null;
+        return paginatedQuotes.Docs is not null && paginatedQuotes.Docs.Length > 0 ? paginatedQuotes.Docs[0] : null;
     }
 
     public async Task<Quote[]> GetQuotesFromMovie(string movieId, LotrRequestOptions? options = null)
