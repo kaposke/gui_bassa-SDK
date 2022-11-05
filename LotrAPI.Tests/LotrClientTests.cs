@@ -53,4 +53,23 @@ public class LotrClientTests
 
         Assert.Equal(movies.Length, expectedLength);
     }
+
+    [Fact]
+    public async Task should_onlyGetHobbitsAndHumansFromCharacters_whenFilteringHobbitsAndHumans()
+    {
+        var client = new LotrClient(apiKey);
+
+        var races = new string[] { "Hobbit", "Human" };
+
+        var options = new LotrRequestOptions
+        {
+            Filters = new() {
+                new FilterInclude("race", races)
+            }
+        };
+
+        var characters = await client.GetCharacters(options);
+
+        Assert.All(characters, c => races.Contains(c.Race));
+    }
 }
