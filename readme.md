@@ -69,6 +69,7 @@ var movies = await client.GetMovies(options);
 These are the available filter types:
 - `FilterOperatorComparison` - For simple operation comparisons (`==`, `!=`, `>=`, `<`, etc.)
 - `FilterInclude` - For values that match any value in a list. Eg:
+
   ```csharp
     new FilterInclude("race", new string[] { "Human", "Hobbit" });
   ```
@@ -114,23 +115,23 @@ dotnet test
 > If you run tests multiple times, they will start failing because of the rate limits!
 
 ## Notes for the reviewrs
-C# and .NET are not my daily driver, its just a language and ecosystem that I like but haven't used in years. I decided to do the challenge with it to prove 
+- C# and .NET are not my daily driver, its just a language and ecosystem that I like but haven't used in years. I decided to do the challenge with it to prove 
 to you (and myself, honestly) that I would be able to (re)learn it and overcome the bumps on the road.
 
-I started using the .NET HttpClient, but eventually changed to [RestSharp](https://restsharp.dev/), which is a wrapper that makes stuff much easier. If this wasn't a challenge, I would probably
+- I started using the .NET HttpClient, but eventually changed to [RestSharp](https://restsharp.dev/), which is a wrapper that makes stuff much easier. If this wasn't a challenge, I would probably
 have explored [Refit](https://github.com/reactiveui/refit), which apparently makes building SDKs super straight forward.
 
-I have limited the scope of the unit tests because it hits the actual api, which has request limits. Its also my first time using xUnit, so take it easy xD.
+- I have limited the scope of the unit tests because it hits the actual api, which has request limits. Its also my first time using xUnit, so take it easy xD.
 
-I totaly pushed the code with my API key there. Aparently using environment variables in .NET is a bit of a headache, so for this small and temporary project I 
+- I totaly pushed the code with my API key there. Aparently using environment variables in .NET is a bit of a headache, so for this small and temporary project I 
 intentionally left the key there. Just know that I'm aware of how wrong that is.
 
-For this small API I decided to leave all the requests in one class, but for a bigger API, I would probably split it up by resources somehow.
+- For this small API I decided to leave all the requests in one class, but for a bigger API, I would probably split it up by resources somehow.
 
-Error handling certainly has room for improvement. I lack the knowledge on .NET error handling best practices, but I covered the basic cases. 
-The error handling for invalid ids has inconsistent responses in the LOTR API itself:
-- `/book/123` - Returns 200 but with error body
-- `/movies/123` (and all other `/:id` routes) - Returns 500 with same error body ^
-- `/movies/invalid_id_but_with_correct_length?` (I think) - Returns 200 and a paginated response on the body, but with an empty array (0 results)
-
-The SDK will just return null for 200 responses, but will throw an exception for 500's.
+- Error handling certainly has room for improvement. I lack the knowledge on .NET error handling best practices, but I covered the basic cases. 
+  The error handling for invalid ids has inconsistent responses in the LOTR API itself:
+  - `/book/123` - Returns 200 but with error body
+  - `/movies/123` (and all other `/:id` routes) - Returns 500 with same error body ^
+  - `/movies/invalid_id_but_with_correct_length?` (I think) - Returns 200 and a paginated response on the body, but with an empty array (0 results).
+  
+  The SDK will just return null for 200 responses, but will throw an exception for 500's.
