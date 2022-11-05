@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotrAPI.SDK", "LotrAPI.SDK\LotrAPI.SDK.csproj", "{D68A04EF-666B-4E4B-B61C-7FC0CE050CE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotrAPI.Console", "LotrAPI.Console\LotrAPI.Console.csproj", "{CC39FB59-CFC7-4CDF-9DB9-FCE52E3732FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D68A04EF-666B-4E4B-B61C-7FC0CE050CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68A04EF-666B-4E4B-B61C-7FC0CE050CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68A04EF-666B-4E4B-B61C-7FC0CE050CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68A04EF-666B-4E4B-B61C-7FC0CE050CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC39FB59-CFC7-4CDF-9DB9-FCE52E3732FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC39FB59-CFC7-4CDF-9DB9-FCE52E3732FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC39FB59-CFC7-4CDF-9DB9-FCE52E3732FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC39FB59-CFC7-4CDF-9DB9-FCE52E3732FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
