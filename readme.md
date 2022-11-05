@@ -3,7 +3,7 @@ The go-to .NET SDK for The Lord of the Rings API :P
 
 ## Instalation
 ```bash
-dotnet add package gui_bassa-SDK
+dotnet add package GuiBassa.11.05.22.001.LotrSDK --version 1.0.0
 ```
 
 ## Usage
@@ -92,6 +92,27 @@ var options = new LotrRequestOptions
 var movies = await client.GetMovies(options);
 ```
 
+## Testing
+Clone the repo:
+```bash
+git clone https://github.com/kaposke/gui_bassa-SDK
+```
+
+Install packages:
+```bash
+cd ./gui_bassa-SDK
+dotnet restore
+```
+> You'll need to have the .NET 6 SDK installed ([Download it here](https://dotnet.microsoft.com/en-us/download))
+
+Open `LotrAPI.Tests/LotrClientTests.cs` and replace the API key with yours on line 10 (or just use that one, but you might be rate-limited).
+
+Run the tests:
+```bash
+dotnet test
+```
+> If you run tests multiple times, they will start failing because of the rate limits!
+
 ## Notes for the reviewrs
 C# and .NET are not my daily driver, its just a language and ecosystem that I like but haven't used in years. I decided to do the challenge with it to prove 
 to you (and myself, honestly) that I would be able to (re)learn it and overcome the bumps on the road.
@@ -113,4 +134,3 @@ The error handling for invalid ids has inconsistent responses in the LOTR API it
 - `/movies/invalid_id_but_with_correct_length?` (I think) - Returns 200 and a paginated response on the body, but with an empty array (0 results)
 
 The SDK will just return null for 200 responses, but will throw an exception for 500's.
-
