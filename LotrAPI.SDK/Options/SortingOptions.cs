@@ -1,15 +1,9 @@
 namespace LotrAPI.SDK.Options;
 
-public class SortingOptions
+public record SortingOptions(
+    string FieldName,
+    SortingDirection Direction = SortingDirection.DESC
+)
 {
-    public string FieldName { get; set; } = String.Empty;
-    public SortingDirection Direction { get; set; } = SortingDirection.DESC;
-
-    public SortingOptions(string fieldName, SortingDirection direction)
-    {
-        FieldName = fieldName;
-        Direction = direction;
-    }
-
     public string AsQueryParam => $"{FieldName}:{(Direction == SortingDirection.DESC ? "desc" : "asc")}";
 }
