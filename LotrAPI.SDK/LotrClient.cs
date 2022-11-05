@@ -5,6 +5,7 @@ using LotrAPI.SDK.Common;
 using LotrAPI.SDK.Options;
 using LotrAPI.SDK.Models;
 using LotrAPI.SDK.Extension;
+using LotrAPI.SDK.Exceptions;
 
 namespace LotrAPI.SDK;
 
@@ -28,9 +29,16 @@ public class LotrClient : ILotrClient, IDisposable
         if (options is not null)
             request.AddOptions(options);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Book>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Book>>(request);
 
-        return paginatedResponse.Docs;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedBooks = response.Data;
+
+        return paginatedBooks.Docs;
     }
 
     public async Task<Book> GetBook(string id)
@@ -38,9 +46,16 @@ public class LotrClient : ILotrClient, IDisposable
         var request = new RestRequest("/book/{id}");
         request.AddUrlSegment("id", id);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Book>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Book>>(request);
 
-        return paginatedResponse.Docs is not null ? paginatedResponse.Docs[0] : null;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedBooks = response.Data;
+
+        return paginatedBooks.Docs is not null ? paginatedBooks.Docs[0] : null;
     }
 
     public async Task<Chapter[]> GetChapters(LotrRequestOptions? options = null)
@@ -49,9 +64,16 @@ public class LotrClient : ILotrClient, IDisposable
         if (options is not null)
             request.AddOptions(options);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Chapter>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Chapter>>(request);
 
-        return paginatedResponse.Docs;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedChapters = response.Data;
+
+        return paginatedChapters.Docs;
     }
 
     public async Task<Chapter> GetChapter(string id)
@@ -59,9 +81,16 @@ public class LotrClient : ILotrClient, IDisposable
         var request = new RestRequest("/chapter/{id}");
         request.AddUrlSegment("id", id);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Chapter>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Chapter>>(request);
 
-        return paginatedResponse.Docs is not null ? paginatedResponse.Docs[0] : null;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedChapters = response.Data;
+
+        return paginatedChapters.Docs is not null ? paginatedChapters.Docs[0] : null;
     }
 
     public async Task<Chapter[]> GetChaptersFromBook(string bookId, LotrRequestOptions? options = null)
@@ -71,9 +100,16 @@ public class LotrClient : ILotrClient, IDisposable
         if (options is not null)
             request.AddOptions(options);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Chapter>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Chapter>>(request);
 
-        return paginatedResponse.Docs;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedChapters = response.Data;
+
+        return paginatedChapters.Docs;
     }
 
     public async Task<Character[]> GetCharacters(LotrRequestOptions? options = null)
@@ -82,9 +118,16 @@ public class LotrClient : ILotrClient, IDisposable
         if (options is not null)
             request.AddOptions(options);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Character>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Character>>(request);
 
-        return paginatedResponse.Docs;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedCharacters = response.Data;
+
+        return paginatedCharacters.Docs;
     }
 
     public async Task<Character> GetCharacter(string id)
@@ -92,9 +135,16 @@ public class LotrClient : ILotrClient, IDisposable
         var request = new RestRequest("/character/{id}");
         request.AddUrlSegment("id", id);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Character>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Character>>(request);
 
-        return paginatedResponse.Docs is not null ? paginatedResponse.Docs[0] : null;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedCharacters = response.Data;
+
+        return paginatedCharacters.Docs is not null ? paginatedCharacters.Docs[0] : null;
     }
 
     public async Task<Movie[]> GetMovies(LotrRequestOptions? options = null)
@@ -103,9 +153,16 @@ public class LotrClient : ILotrClient, IDisposable
         if (options is not null)
             request.AddOptions(options);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Movie>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Movie>>(request);
 
-        return paginatedResponse.Docs;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedMovies = response.Data;
+
+        return paginatedMovies.Docs;
     }
 
     public async Task<Movie> GetMovie(string id)
@@ -113,9 +170,16 @@ public class LotrClient : ILotrClient, IDisposable
         var request = new RestRequest("/movie/{id}");
         request.AddUrlSegment("id", id);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Movie>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Movie>>(request);
 
-        return paginatedResponse.Docs is not null ? paginatedResponse.Docs[0] : null;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedMovies = response.Data;
+
+        return paginatedMovies.Docs is not null ? paginatedMovies.Docs[0] : null;
     }
 
     public async Task<Quote[]> GetQuotes(LotrRequestOptions? options = null)
@@ -124,9 +188,16 @@ public class LotrClient : ILotrClient, IDisposable
         if (options is not null)
             request.AddOptions(options);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Quote>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Quote>>(request);
 
-        return paginatedResponse.Docs;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedQuotes = response.Data;
+
+        return paginatedQuotes.Docs;
     }
 
     public async Task<Quote> GetQuote(string id)
@@ -134,9 +205,16 @@ public class LotrClient : ILotrClient, IDisposable
         var request = new RestRequest("/quote/{id}");
         request.AddUrlSegment("id", id);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Quote>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Quote>>(request);
 
-        return paginatedResponse.Docs is not null ? paginatedResponse.Docs[0] : null;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedQuotes = response.Data;
+
+        return paginatedQuotes.Docs is not null ? paginatedQuotes.Docs[0] : null;
     }
 
     public async Task<Quote[]> GetQuotesFromMovie(string movieId, LotrRequestOptions? options = null)
@@ -146,9 +224,35 @@ public class LotrClient : ILotrClient, IDisposable
         if (options is not null)
             request.AddOptions(options);
 
-        var paginatedResponse = await _client.GetAsync<PaginatedResponse<Quote>>(request);
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Quote>>(request);
 
-        return paginatedResponse.Docs;
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedQuotes = response.Data;
+
+        return paginatedQuotes.Docs;
+    }
+
+    public async Task<Quote[]> GetQuotesFromCharacter(string characterId, LotrRequestOptions? options = null)
+    {
+        var request = new RestRequest("/character/{id}/quote");
+        request.AddUrlSegment("id", characterId);
+        if (options is not null)
+            request.AddOptions(options);
+
+        var response = await _client.ExecuteGetAsync<PaginatedResponse<Quote>>(request);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new LotrApiResponseException(response.StatusCode, response.StatusDescription);
+        }
+
+        var paginatedQuotes = response.Data;
+
+        return paginatedQuotes.Docs;
     }
 
     public void Dispose()

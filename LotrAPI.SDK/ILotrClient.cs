@@ -15,6 +15,7 @@ public interface ILotrClient
     Task<Quote[]> GetQuotes(LotrRequestOptions? options);
     Task<Quote> GetQuote(string id);
     Task<Quote[]> GetQuotesFromMovie(string movieId, LotrRequestOptions? options);
+    Task<Quote[]> GetQuotesFromCharacter(string characterId, LotrRequestOptions? options);
     Task<Chapter[]> GetChapters(LotrRequestOptions? options);
     Task<Chapter> GetChapter(string id);
     Task<Chapter[]> GetChaptersFromBook(string bookId, LotrRequestOptions? options);
