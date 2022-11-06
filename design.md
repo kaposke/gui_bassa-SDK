@@ -42,7 +42,7 @@ like "movie" in Quotes, to "movieId". I didn't tackle the problem due to time li
 - Somehow use the `JsonPropertyName` property that are in present in every model to describe how to convert from JSON to object, to figure out what the name of each field
   would be in the original json and use that, aiming for this usage model:
   ```csharp
-  // Super imaginative idea, not its possible to do something similar
+  // Super imaginative idea, not sure if its possible to do something similar
   new SortingOptions(nameof(Character.Name));
   ```
 - Just have constants or enums for everything. (also not a fan)
